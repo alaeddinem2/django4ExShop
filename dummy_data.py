@@ -11,51 +11,43 @@ from faker import Faker
 
 
 
-def seed_Post(n):
+
+def seed_products(n):
     fake = Faker()
-    author_list = [1, 2, 3, 4, 5, 6]
-    flags_list = ['python', 'music', 'developement',
-                  'life', 'homepage', 'travel']
+    
+    
 
     for _ in range(n):
-        # Get a random author ID from the author_list
-        author_id = author_list[random.randint(0, len(author_list)-1)]
-
-        # Create a User instance with the selected author_id
-        author = User.objects.get(pk=author_id)
-
+        images= ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg']
         # Create a new Post instance with the author
-        Post.objects.create(
-            title=fake.text(max_nb_chars=30),
-            author=author,
-            body=fake.text(max_nb_chars=700),
-            #tags=flags_list[random.randint(0, len(flags_list)-1)]
+        Product.objects.create(
+            category=Category.objects.get(id=random.randint(1,20)),
+            name=fake.text(max_nb_chars=8),
+            image = f'products/{images[random.randint(0,9)]}',
+            description=fake.text(max_nb_chars=100),
+            price = round(random.uniform(20.99,99.99)),
         )
 
-    print(f'Seeded {n} posts')
+    print(f'Seeded {n} products')
+
+def seed_categories(n):
+    fake = Faker()
+    
+    
+
+    for _ in range(n):
+
+        Category.objects.create(
+            name=fake.text(max_nb_chars=8),
+            
+        )
+
+    print(f'Seeded {n} products')
 
 
 # Example usage: seed 10 posts
 #seed_Post(35)
 
-def seed_comments(n):
-    fake = Faker()
-    users_list = [1, 2, 3, 4, 5, 6, 7]
-    flags_list = ['python', 'music', 'developement',
-                  'life', 'homepage', 'travel']
+#seed_categories(10)
 
-    for _ in range(n):
-        # Get a random author ID from the author_list
-        
-
-        # Create a new Post instance with the author
-        Comment.objects.create(
-            post=Post.objects.get(id=random.randint(1,42)),
-            name=User.objects.get(id=random.randint(1,6)),
-            body=fake.text(max_nb_chars=50),
-            
-        )
-
-    print(f'Seeded {n} Comments')
-
-seed_comments(100)
+seed_products(100)
