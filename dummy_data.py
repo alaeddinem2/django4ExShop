@@ -22,7 +22,7 @@ def seed_products(n):
         # Create a new Post instance with the author
         Product.objects.create(
             category=Category.objects.get(id=random.randint(1,20)),
-            name=fake.text(max_nb_chars=8),
+            name=fake.name(),
             image = f'products/{images[random.randint(0,9)]}',
             description=fake.text(max_nb_chars=100),
             price = round(random.uniform(20.99,99.99)),
@@ -38,7 +38,7 @@ def seed_categories(n):
     for _ in range(n):
 
         Category.objects.create(
-            name=fake.text(max_nb_chars=8),
+            name=fake.name(),
             
         )
 
