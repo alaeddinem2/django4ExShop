@@ -7,6 +7,11 @@ from django.urls import reverse
 from .models import Order, OrderItem
 
 # Register your models here.
+def order_pdf(obj):
+    url = reverse('orders:admin_order_pdf',args=[obj.id])
+    return mark_safe(f'<a href="{url}">PDF</a>')
+order_pdf.short_description = 'Invoice'
+
 def order_detail(obj):
     url = reverse('orders:admin_order_detail',args=[obj.id])
     return mark_safe(f'<a href="{url}">View<a/>')
@@ -49,9 +54,9 @@ export_to_csv.short_description = 'Export to CSV'
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id','first_name','last_name','email',
+    list_display = ['id', order_pdf,order_payment,'first_name','last_name','email',
                     'address', 'postal_code', 'city', 'paid',
-                    order_payment,'created', 'updated',order_detail]
+                    'created', 'updated',order_detail]
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
     actions = [export_to_csv]
