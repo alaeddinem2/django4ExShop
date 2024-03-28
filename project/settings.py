@@ -132,7 +132,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'static'
 
 CART_SESSION_ID = 'cart'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST_PASSWORD = 'hzbyhmvwbczfkdzc' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'dz.raqib@gmail.com'
 
 # Stripe settings
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51OpEH1K1RiR1swvhUaM2UbMq3OKyeBiPcRWraIJ3Ncw2KgYaMxUpyLKtRHNkwdZLu6LAXm94OEEAUu7CK2bw2pfO00PcToz6eh' # Publishable key
