@@ -22,7 +22,6 @@
   </form>
  Description:
  {{ product.description|linebreaks }}
-</div>
  {% if recommended_products %}
  <div class="recommendations">
  <h3>People who bought this also bought :</h3>
@@ -37,4 +36,6 @@
  {% endfor %}
  </div>
 {% endif %}
+</div>
+ 
 {% endblock %}
