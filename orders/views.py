@@ -27,7 +27,7 @@ def order_create(request):
                                          price=item['price'],
                                          quantity=item['quantity'])
             cart.clear()
-            request.session['coupon_id'] = None
+            del request.session['coupon_id']
             order_created.delay(order.id)
             #set the order in the session
             request.session['order_id'] = order.id
